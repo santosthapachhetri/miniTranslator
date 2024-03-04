@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Translation Result</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.1; /* Set the opacity to 10% */
+            z-index: -1;
+        }
+
+        div {
+            text-align: center;
+            color: black;
+            padding: 20px;
+            margin-top: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 10);
+            height: 250px;
+            overflow-y: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        audio {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #234b9f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2952a3; /* Change the hover color as desired */
+        }
+
+        h2 {
+            font-family: 'cursive', cursive;
+        }
+    </style>
+    <script>
+        // Function to stop the background music when leaving the page
+        window.addEventListener('beforeunload', function (event) {
+            stopMusic();
+        });
+
+        function setVolume(volume) {
+            const audio = document.getElementById('translationAudio');
+            audio.volume = volume;
+        }
+
+        function playAudio() {
+            const audio = document.getElementById('translationAudio');
+            setVolume(1); // Set the volume to 10% (you can adjust this value)
+            audio.play();
+        }
+
+        // Function to stop the background music
+        function stopMusic() {
+            fetch('/stop_music')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.status);
+                })
+                .catch(error => {
+                    console.error('Error stopping music:', error);
+                });
+        }
+
+        // Function to play the background music
+        function playBackgroundMusic() {
+            fetch('/play_background_music')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.status);
+                })
+                .catch(error => {
+                    console.error('Error playing background music:', error);
+                });
+        }
+    </script>
+</head>
+
+<body>
+    <video autoplay muted loop>
+        <source src="/static/video/background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div>
+        <h2>Translation Result</h2>
+        <p>{{ translated_text }}</p>
+        <audio id="translationAudio" controls>
+            <!-- Add the random parameter to the audio file URL -->
+            <source src="{{ audio_file }}?rand={{ random_number }}" type="audio/mpeg">
+            The audio is not supported
+        </audio>
+        <br>
+        <button onclick="playAudio()">Play Audio</button>
+        <button id="stopMusicBtn">Stop Music</button>
+        <button id="playBackgroundBtn">Play Background Music</button>
+    </div>
+
+    <script>
+        // Trigger playBackgroundMusic when hovering over the Play Background Music button
+        document.getElementById('playBackgroundBtn').addEventListener('mouseenter', function () {
+            playBackgroundMusic();
+        });
+
+        // Trigger stopMusic when hovering over the Stop Music button
+        document.getElementById('stopMusicBtn').addEventListener('mouseenter', function () {
+            stopMusic();
+        });
+    </script>
+</body>
+
+</html>
+

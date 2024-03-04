@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>mini Translator</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to bottom, #59d3fc, #554dde);
+            overflow: hidden; /* Hide the overflow to prevent video overflow */
+        }
+
+        video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.1; /* Set the opacity of the video */
+            z-index: -1; /* Place the video behind other elements */
+        }
+
+        form {
+            text-align: center;
+            background: linear-gradient(to bottom, #554dde, #59d3fc);
+            color: white;
+            padding: 20px;
+            margin-top: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 10);
+            position: relative; /* Make sure the form is positioned relative to the body */
+            z-index: 1; /* Place the form above the video */
+        }
+
+        label,
+        textarea,
+        select,
+        input {
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"],
+        button {
+            background-color: white;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+        }
+
+        input[type="submit"]:hover,
+        button:hover {
+            background-color: #234b9f;
+            color: white;
+        }
+
+        h1 {
+            font-family: 'cursive', cursive;
+            /* Added cursive font style */
+        }
+    </style>
+</head>
+
+<body>
+    <video autoplay loop muted>
+        <source src="/static/video/background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <form action="/translate" method="post">
+        <h1>mini Translator</h1>
+        <label for="source_lang">Select the language:</label>
+        <select name="source_lang" id="source_lang">
+            {% for key, value in languages.items() %}
+            <option value="{{ key }}">{{ value }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="target_lang">Select the targeted language:</label>
+        <select name="target_lang" id="target_lang">
+            {% for key, value in languages.items() %}
+            <option value="{{ key }}">{{ value }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="input_text">Write or Speak:</label><br>
+        <textarea name="input_text" id="input_text" rows="10" cols="50"></textarea><br>
+
+        <button type="button" onclick="startSpeechRecognition()">Speak</button>
+        <span id="speech-feedback"></span>
+        <input type="submit" value="Translate">
+    </form>
+
+    {% if alert_message %}
+    <script>
+        alert("{{ alert_message }}");
+    </script>
+    {% endif %}
+
+    <script>
+        function startSpeechRecognition() {
+            const recognition = new webkitSpeechRecognition();
+            recognition.lang = document.getElementById("source_lang").value;
+
+            recognition.onstart = function () {
+                document.getElementById("speech-feedback").innerText = "Recording...";
+            };
+
+            recognition.onresult = function (event) {
+                const inputText = event.results[0][0].transcript;
+                document.getElementById("input_text").value = inputText;
+                document.getElementById("speech-feedback").innerText = "Speech recorded!";
+            };
+
+            recognition.onerror = function (event) {
+                document.getElementById("speech-feedback").innerText = "Speech recognition error: " + event.error;
+            };
+
+            recognition.onend = function () {
+                if (document.getElementById("speech-feedback").innerText === "Recording...") {
+                    document.getElementById("speech-feedback").innerText = "No speech recorded.";
+                }
+            };
+
+            recognition.start();
+        }
+    </script>
+</body>
+
+</html>
+
