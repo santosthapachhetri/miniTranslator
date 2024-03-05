@@ -1,3 +1,4 @@
-web: AUDIODRIVER=none gunicorn app:app
+gunicorn -c gunicorn_config.py app:app
+
 
 
