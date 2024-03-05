@@ -1,5 +1,6 @@
 # Import necessary libraries
 import os
+os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "1"
 import pygame
 from pygame import mixer
 from flask import Flask, request, render_template, make_response, jsonify
@@ -11,13 +12,17 @@ import random
 
 
 # Set the environment variable before initializing Pygame
-os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "1"
+pygame.mixer.init(frequency=22050, size=-16, channels=2, buffer=512)
+
+
+app = Flask(__name__)
+
 try:
     import pygame
 except ImportError:
     pygame = None
 
-app = Flask(__name__)
+
 
 try:
     import pygame
