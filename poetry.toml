@@ -1,0 +1,4 @@
+# poetry.toml
+
+[tool.poetry.scripts]
+prebuild = "python scripts/prebuild.py"
