@@ -4,7 +4,9 @@ import multiprocessing
 
 bind = "0.0.0.0:8000"  # Set the host and port
 workers = multiprocessing.cpu_count() * 2 + 1  # Adjust the number of workers based on your needs
-reload = True  # Enable automatic reloading on code changes during development
+reload = True
+preload_app = True
+# Enable automatic reloading on code changes during development
 worker_class = "gevent"  # Use the gevent worker class for better performance
 
 # Optional Gunicorn settings
