@@ -1,4 +1,5 @@
-gunicorn -c gunicorn.config.py app_module:app
+gunicorn --preload -c gunicorn_config.py app:app
+
 
 
 
