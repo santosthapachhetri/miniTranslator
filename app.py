@@ -2,6 +2,7 @@
 import os
 os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "1"
 import pygame
+pygame.mixer.init(frequency=22050, size=-16, channels=2, buffer=512)
 from pygame import mixer
 from flask import Flask, request, render_template, make_response, jsonify
 from gtts import gTTS
@@ -11,7 +12,12 @@ import time
 import random
 
 
-# Set the environment variable before initializing Pygame
+# Use a dummy audio segment
+dummy_audio = AudioSegment.silent(duration=1000)  # Adjust duration as needed
+pygame.mixer.Sound(dummy_audio).play()
+
+
+# Initialize Pygame mixer
 pygame.mixer.init(frequency=22050, size=-16, channels=2, buffer=512)
 
 
