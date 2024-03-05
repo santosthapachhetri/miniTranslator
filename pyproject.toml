@@ -3,16 +3,57 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
-name = "app"
+name = "miniTranslator"
 version = "0.1.0"
 description = ""
 
 [tool.poetry.dependencies]
 python = "^3.11"
 flask = "1.1.2"
-pygame = { version = "2.0.1", include = ["build_ext", "--global-option=build_ext", "--global-option=-I/usr/include/SDL2"] }
-libsdl2-dev = "*"
+pygame = { version = "2.0.1", build = "~2.0.14", include = ["build_ext", "--global-option=build_ext", "--global-option=-I/usr/include/SDL2"] }
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "your-project-name"
+version = "0.1.0"
+description = ""
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask = "1.1.2"
+pygame = { version = "2.0.1", build = "~2.0.14", include = ["build_ext", "--global-option=build_ext", "--global-option=-I/usr/include/SDL2"] }
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "your-project-name"
+version = "0.1.0"
+description = ""
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask = "1.1.2"
+pygame = { version = "2.0.1", build = "~2.0.14", include = ["build_ext", "--global-option=build_ext", "--global-option=-I/usr/include/SDL2"] }
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[system_packages]
+libsdl2-dev = "2.0.14"
+libsdl2-image-dev = "*"
+libsdl2-mixer-dev = "*"
+libsdl2-ttf-dev = "*"
