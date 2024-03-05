@@ -1,6 +1,9 @@
 Flask==1.1.2
+pygame==2.0.1 --no-build-isolation --global-option=build_ext --global-option="-I/usr/include/SDL2"
+libsdl2-dev
 pygame==2.0.1
 gtts==2.2.2
 googletrans==4.0.0-rc1
 beautifulsoup4==4.9.3
 requests==2.25.1
+

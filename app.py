@@ -9,6 +9,10 @@ from bs4 import BeautifulSoup
 import time
 import random
 
+
+# Specify the SDL version for pygame
+pygame.__version__ = '2.0.14'
+
 app = Flask(__name__)
 
 languages = {
