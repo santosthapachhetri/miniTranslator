@@ -1,18 +1,18 @@
 # gunicorn_config.py
 
+from multiprocessing import cpu_count
+import os
+
+bind = "0.0.0.0:8000"
+workers = cpu_count() * 2 + 1
+max_requests = 1000
+timeout = 30
+preload_app = True
+
 def post_fork(server, worker):
-    from multiprocessing import util
-    util._exit_function = util._original_exit_function
-
-def worker_init(worker):
-    from ctypes import CDLL
-    import ctypes.util
-
-    # Suppress ALSA error messages
-    ctypes.util.find_library('sndfile') or CDLL('libsndfile.so.1', mode=1)
-
-# Disable Gunicorn from trying to access audio devices
-def pre_fork(server, worker):
-    import soundfile as sf
-    import sys
-    sys.modules["soundfile"] = sf
+    # Reset multiprocessing method to fork for Windows compatibility
+    from multiprocessing import set_start_method
+    try:
+        set_start_method("fork")
+    except RuntimeError:
+        pass

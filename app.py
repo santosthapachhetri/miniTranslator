@@ -4,7 +4,9 @@ os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "1"
 import pygame
 pygame.mixer.init(frequency=22050, size=-16, channels=2, buffer=512)
 from pygame import mixer
+from pydub.playback import play
 from flask import Flask, request, render_template, make_response, jsonify
+from pydub import AudioSegment  # Import the AudioSegment class
 from gtts import gTTS
 from googletrans import Translator
 from bs4 import BeautifulSoup
@@ -22,6 +24,12 @@ pygame.mixer.init(frequency=22050, size=-16, channels=2, buffer=512)
 
 
 app = Flask(__name__)
+
+
+dummy_audio = AudioSegment.silent(duration=1000)
+
+play(dummy_audio)
+
 
 try:
     import pygame
