@@ -1,9 +1,0 @@
-Flask==1.1.2
-pygame==2.0.1 --global-option=build_ext --global-option="-I/C:\dev\SDL2-2.30.0\include"
-libsdl2-dev
-pygame==2.0.1
-gtts==2.2.2
-googletrans==4.0.0-rc1
-beautifulsoup4==4.9.3
-requests==2.25.1
-

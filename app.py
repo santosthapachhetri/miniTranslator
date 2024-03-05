@@ -9,10 +9,6 @@ from bs4 import BeautifulSoup
 import time
 import random
 
-
-# Specify the SDL version for pygame
-pygame.__version__ = '2.0.14'
-
 app = Flask(__name__)
 
 languages = {
@@ -112,4 +108,4 @@ def translate_webpage(url, target_lang):
     return translated_text
 
 if __name__ == "__main__":
-    app.run(port=int(os.environ.get("PORT", 5000)))
+    app.run(debug=True)
