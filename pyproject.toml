@@ -10,7 +10,7 @@ description = ""
 [tool.poetry.dependencies]
 python = "^3.11"
 flask = "1.1.2"
-pygame = { version = "2.0.1", include = ["C:\Users\SDL2-devel-2.30.0-mingw\SDL2-2.30.0\i686-w64-mingw32\include"], libs = ["C:\Users\SDL2-devel-2.30.0-mingw\SDL2-2.30.0\i686-w64-mingw32\lib"] }
+pygame = { version = "2.0.1", include = ["C:\dev\SDL2-2.30.0\include"], libs = ["C:\dev\SDL2-2.30.0\lib\x64"] }
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
