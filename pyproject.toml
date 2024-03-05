@@ -1,0 +1,17 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "your-project-name"
+version = "0.1.0"
+description = ""
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask = "1.1.2"
+pygame = { version = "2.0.1", include = ["build_ext", "--global-option=build_ext", "--global-option=-I/usr/include/SDL2"] }
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
