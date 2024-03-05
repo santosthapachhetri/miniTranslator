@@ -1,5 +1,5 @@
 Flask==2.1.0
-python_version==3.9
+python_version==3.11.4
 gtts==2.2.2
 googletrans==4.0.0-rc1
 beautifulsoup4==4.10.0
