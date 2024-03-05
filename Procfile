@@ -1,4 +1,5 @@
-gunicorn -c gunicorn_config.py app:app
+gunicorn -c gunicorn.config.py app_module:app
+
 
 
 
