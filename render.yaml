@@ -1,0 +1,6 @@
+# render.yaml
+
+buildCommand: |
+  apt-get update -y
+  apt-get install -y -qq $(cat apt.txt)
+  pip install -r requirements.txt
