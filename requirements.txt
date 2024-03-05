@@ -1,5 +1,5 @@
 Flask==1.1.2
-pygame==2.0.1 --global-option=build_ext --global-option="-I/usr/include/SDL2"
+pygame==2.0.1 --global-option=build_ext --global-option="-I/C:\dev\SDL2-2.30.0\include"
 libsdl2-dev
 pygame==2.0.1
 gtts==2.2.2
