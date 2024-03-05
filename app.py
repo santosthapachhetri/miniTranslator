@@ -11,6 +11,11 @@ import random
 
 app = Flask(__name__)
 
+try:
+    import pygame
+except ImportError:
+    pygame = None
+
 languages = {
     'en': 'English',
     'es': 'Spanish',
