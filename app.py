@@ -14,9 +14,7 @@ import time
 import random
 
 
-# Use a dummy audio segment
-dummy_audio = AudioSegment.silent(duration=1000)  # Adjust duration as needed
-pygame.mixer.Sound(dummy_audio).play()
+
 
 
 # Initialize Pygame mixer
