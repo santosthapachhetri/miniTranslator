@@ -6,6 +6,7 @@ pygame.mixer.init(frequency=22050, size=-16, channels=2, buffer=512)
 from pygame import mixer
 from pydub.playback import play
 from flask import Flask, request, render_template, make_response, jsonify
+import requests
 from pydub import AudioSegment  # Import the AudioSegment class
 from gtts import gTTS
 from googletrans import Translator
@@ -138,4 +139,5 @@ def translate_webpage(url, target_lang):
     return translated_text
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=int(os.environ.get("PORT", 8080)))
+
