@@ -1,9 +1,0 @@
-web:  gunicorn app:app
-
-
-
-
-
-
-
-
